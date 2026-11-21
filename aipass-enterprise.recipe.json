@@ -1,0 +1,323 @@
+{
+  "id": "webview_aipass_enterprise",
+  "title": "AiPASS Gemini Enterprise",
+  "version": "1.0.17",
+  "openShadowDom": true,
+  "modeSchemaVersion": 2,
+  "domainMatch": "vertexaisearch.cloud.google",
+  "url": "https://vertexaisearch.cloud.google/us/home/cid/d0232075-fc40-478b-a285-8ade71a9a39d",
+  "newChatUrl": "https://vertexaisearch.cloud.google/us/home/cid/d0232075-fc40-478b-a285-8ade71a9a39d",
+  "authStrategy": "cookie_sync",
+  "auth": {
+    "loggedInSelector": "[aria-label=\"Choose model\"]",
+    "loggedOutSelector": "a[href*=\"accounts.google.com/ServiceLogin\"], a[href*=\"accounts.google.com/signin\"]"
+  },
+  "selectors": {
+    "inputPrompt": [
+      "textarea[aria-label=\"Ask Gemini Enterprise\"]",
+      "[contenteditable=\"true\"][aria-label=\"Ask Gemini Enterprise\"]",
+      "textarea[placeholder=\"Ask Gemini Enterprise\"]",
+      "main [contenteditable=\"true\"][role=\"textbox\"]",
+      "rich-textarea [contenteditable=\"true\"]",
+      "[contenteditable=\"true\"][role=\"textbox\"]",
+      "textarea",
+      "[contenteditable=\"true\"]"
+    ],
+    "submitButton": [
+      "button[aria-label=\"Send\"]",
+      "button[aria-label=\"Send message\"]",
+      "button[aria-label=\"Submit\"]",
+      "button[title=\"Submit\"]",
+      "button[type=\"submit\"]"
+    ],
+    "stopButton": [
+      "button[aria-label=\"Stop generating\"]",
+      "button[aria-label=\"Stop response\"]"
+    ],
+    "modelDropdownTrigger": "button[aria-label=\"Choose model\"]"
+  },
+  "modelSelection": {
+    "trigger": "button[aria-label=\"Choose model\"]",
+    "item": "md-menu-item[md-menu-item]",
+    "activeLabel": "md-text-button.action-model-selector .model-selector-label"
+  },
+  "response": {
+    "codeBlockSelector": "code-block:has(pre code), ucs-code-block:has(pre code)",
+    "container": [
+      "ucs-response-markdown"
+    ],
+    "textSelector": [
+      "ucs-fast-markdown"
+    ],
+    "actionButtons": [
+      "button[aria-label=\"Copy\"]",
+      "button[aria-label=\"Copy response\"]",
+      "ucs-answer-footer"
+    ],
+    "generatingIndicator": [
+      "[aria-busy=\"true\"] [role=\"progressbar\"]"
+    ],
+    "excludeSelectors": [
+      "details",
+      "footer",
+      "sources-list"
+    ],
+    "modes": {
+      "text": {
+        "enabled": true,
+        "mediaKind": "text",
+        "inputAttachments": {
+          "fileInput": [
+            "images-files-uploader[data-test-id=\"uploader-images-files-button-advanced\"] > input[type=\"file\"]",
+            "uploader > input[type=\"file\"]",
+            "input[type=\"file\"]"
+          ],
+          "acceptedKinds": [
+            "image",
+            "document"
+          ],
+          "multiple": true,
+          "revealSteps": [
+            {
+              "action": "click",
+              "target": {
+                "role": "button",
+                "name": "Add files"
+              }
+            },
+            {
+              "action": "click",
+              "target": {
+                "role": "menuitem",
+                "name": "Upload files"
+              }
+            }
+          ],
+          "ready": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "cleanup": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "readyStableMs": 700
+        }
+      },
+      "image": {
+        "enabled": true,
+        "mediaKind": "image",
+        "contentSelector": "img[src], img[srcset]",
+        "generation": {
+          "activationSteps": [
+            {
+              "action": "click",
+              "target": {
+                "selectors": "button[aria-label=\"Select tools\"], [role=\"button\"][aria-label=\"Select tools\"]"
+              }
+            },
+            {
+              "action": "click",
+              "target": {
+                "selectors": [
+                  "button, [role=\"menuitem\"], [role=\"menuitemradio\"], [role=\"menuitemcheckbox\"], [role=\"option\"], [role=\"button\"]",
+                  "span:not(:has(span))",
+                  "div:not(:has(div, span))"
+                ],
+                "name": "Create images"
+              }
+            }
+          ],
+          "activeWhen": {
+            "selectors": ".ProseMirror .placeholder.ProseMirror-widget",
+            "name": "Describe the image you want to generate"
+          },
+          "settings": [],
+          "models": [
+            "default"
+          ],
+          "activationMarker": "empty-composer"
+        },
+        "inputSelector": ".ProseMirror[contenteditable=\"true\"]",
+        "responseContainer": "ucs-summary",
+        "inputAttachments": {
+          "fileInput": [
+            "images-files-uploader[data-test-id=\"uploader-images-files-button-advanced\"] > input[type=\"file\"]",
+            "uploader > input[type=\"file\"]",
+            "input[type=\"file\"]"
+          ],
+          "acceptedKinds": [
+            "image"
+          ],
+          "multiple": false,
+          "revealSteps": [
+            {
+              "action": "click",
+              "target": {
+                "role": "button",
+                "name": "Add files"
+              }
+            },
+            {
+              "action": "click",
+              "target": {
+                "role": "menuitem",
+                "name": "Upload files"
+              }
+            }
+          ],
+          "ready": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "cleanup": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "readyStableMs": 700,
+          "acceptedMimeTypes": [
+            "image/png",
+            "image/jpeg",
+            "image/webp"
+          ]
+        }
+      },
+      "video": {
+        "enabled": true,
+        "mediaKind": "video",
+        "contentSelector": "video[src], video source[src]",
+        "generation": {
+          "activationSteps": [
+            {
+              "action": "click",
+              "target": {
+                "selectors": "button[aria-label=\"Select tools\"], [role=\"button\"][aria-label=\"Select tools\"]"
+              }
+            },
+            {
+              "action": "click",
+              "target": {
+                "selectors": [
+                  "button, [role=\"menuitem\"], [role=\"menuitemradio\"], [role=\"menuitemcheckbox\"], [role=\"option\"], [role=\"button\"]",
+                  "span:not(:has(span))",
+                  "div:not(:has(div, span))"
+                ],
+                "name": "Create videos"
+              }
+            }
+          ],
+          "activeWhen": {
+            "selectors": ".ProseMirror .placeholder.ProseMirror-widget",
+            "name": "Describe the video you want to generate"
+          },
+          "settings": [],
+          "models": [
+            "default"
+          ],
+          "activationMarker": "empty-composer"
+        },
+        "inputSelector": ".ProseMirror[contenteditable=\"true\"]",
+        "responseContainer": "ucs-summary",
+        "inputAttachments": {
+          "fileInput": [
+            "images-files-uploader[data-test-id=\"uploader-images-files-button-advanced\"] > input[type=\"file\"]",
+            "uploader > input[type=\"file\"]",
+            "input[type=\"file\"]"
+          ],
+          "acceptedKinds": [
+            "image"
+          ],
+          "multiple": false,
+          "revealSteps": [
+            {
+              "action": "click",
+              "target": {
+                "role": "button",
+                "name": "Add files"
+              }
+            },
+            {
+              "action": "click",
+              "target": {
+                "role": "menuitem",
+                "name": "Upload files"
+              }
+            }
+          ],
+          "ready": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "cleanup": "button.remove-file[aria-label=\"Remove file\"]:not([disabled]):not([aria-disabled=\"true\"])",
+          "readyStableMs": 700,
+          "acceptedMimeTypes": [
+            "image/png",
+            "image/jpeg",
+            "image/webp"
+          ]
+        }
+      },
+      "music": {
+        "enabled": false,
+        "mediaKind": "audio",
+        "unavailableReason": "The signed-in Enterprise chat did not offer a music tool and reported it could not generate playable audio in a live test."
+      }
+    }
+  },
+  "models": [
+    {
+      "id": "auto",
+      "displayName": "Auto",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "gemini-4-carbon",
+      "displayName": "Gemini 4 Carbon",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "gemini-4-argon",
+      "displayName": "Gemini 4 Argon",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "gemini-3-8-flash",
+      "displayName": "Gemini 3.8 Flash",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "gemini-3-5-flash",
+      "displayName": "Gemini 3.5 Flash",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "gemini-3-1-pro-preview",
+      "displayName": "Gemini 3.1 Pro · Preview",
+      "mode": "general",
+      "modes": [
+        "general",
+        "coding",
+        "writing"
+      ]
+    },
+    {
+      "id": "default",
+      "displayName": "Current provider selection",
+      "mode": "image",
+      "modes": [
+        "image",
+        "video"
+      ]
+    }
+  ]
+}
