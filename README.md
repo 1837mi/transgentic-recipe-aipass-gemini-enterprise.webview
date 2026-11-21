@@ -1,0 +1,1 @@
+# transgentic-recipe-aipass-gemini-enterprise
